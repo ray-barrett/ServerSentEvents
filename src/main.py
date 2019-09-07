@@ -27,7 +27,7 @@ def stream():
         uid = uuid.uuid4()
         for i in range(30):
             time.sleep(2)
-            print (uid, i)
+            print(uid, i)
             yield "id: {}\ndata: {:>2}\n\n".format(uid, i)
 
     return Response(event_stream(), mimetype="text/event-stream")
