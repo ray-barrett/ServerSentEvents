@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt
     - name: Lint with flake8
       run: |
-        pip install black
+        # pip install black
         black --check --diff .
     - name: Test with pytest
       run: |
