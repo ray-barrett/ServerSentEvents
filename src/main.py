@@ -16,6 +16,11 @@ def about():
     return render_template("about.html")
 
 
+@app.route("/basic_example")
+def basic_example():
+    return render_template("stream1.html")
+
+
 @app.route("/stream")
 def stream():
     def event_stream():

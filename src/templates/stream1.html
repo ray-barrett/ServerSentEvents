@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stream Test with Table</title>
+</head>
+
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <h1> My First Try Using Flask </h1>
+    <p> Flask is Fun </p>
+    <div id="target_div">Watch this space...</div>
+    <script>
+        var targetContainer = document.getElementById("target_div");
+        var eventSource = new EventSource("/stream")
+        eventSource.onmessage = function handleStream(e) {
+            console.log(e);
+            targetContainer.innerHTML = e.lastEventId + " " + e.data;
+        };
+    </script>
+
+    {% endblock %}
+</body>
+
+</html>

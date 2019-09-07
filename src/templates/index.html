@@ -10,17 +10,10 @@
     {% extends "template.html" %}
     {% block content %}
 
-    <h1> My First Try Using Flask </h1>
-    <p> Flask is Fun </p>
-    <div id="target_div">Watch this space...</div>
-    <script>
-        var targetContainer = document.getElementById("target_div");
-        var eventSource = new EventSource("/stream")
-        eventSource.onmessage = function handleStream(e) {
-            console.log(e);
-            targetContainer.innerHTML = e.lastEventId + " " + e.data;
-        };
-    </script>
+    <div id="maincontent">
+        <h1> My First Try Using Flask </h1>
+        <p> Flask is Fun </p>
+    </div>
 
     {% endblock %}
 </body>

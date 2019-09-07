@@ -8,8 +8,12 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
+    <div id="page">
+
+        {% block content %}
+        {% endblock %}
+
+        <div id="menuleftcontent">
             <h1 class="logo">First Web App</h1>
             <strong>
                 <nav>
@@ -20,10 +24,7 @@
                 </nav>
             </strong>
         </div>
-    </header>
-
-    {% block content %}
-    {% endblock %}
+    </div>
 
 </body>
 
