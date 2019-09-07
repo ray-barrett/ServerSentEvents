@@ -4,23 +4,28 @@
 <head>
     <meta charset="utf-8">
     <title>Stream Test with Table</title>
+
+    <script>
+        function connect_to_stream() {
+            var targetContainer = document.getElementById("target_div");
+            var eventSource = new EventSource("/stream")
+            eventSource.onmessage = function handleStream(e) {
+                console.log(e);
+                targetContainer.innerHTML = "Received streamed Value: " + e.data;
+            };
+        };
+    </script>
 </head>
 
 <body>
     {% extends "template.html" %}
     {% block content %}
 
-    <h1> My First Try Using Flask </h1>
-    <p> Flask is Fun </p>
+
     <div id="target_div">Watch this space...</div>
-    <script>
-        var targetContainer = document.getElementById("target_div");
-        var eventSource = new EventSource("/stream")
-        eventSource.onmessage = function handleStream(e) {
-            console.log(e);
-            targetContainer.innerHTML = e.lastEventId + " " + e.data;
-        };
-    </script>
+    <div id="connect_button">
+        <button type="button" onclick="connect_to_stream()">Click For Magic</button>
+    </div>
 
     {% endblock %}
 </body>
