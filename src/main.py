@@ -21,13 +21,17 @@ def basic_example():
     return render_template("stream1.html")
 
 
+@app.route("/progress_bar")
+def basic_progress():
+    return render_template("progress.html")
+
+
 @app.route("/stream")
 def stream():
     def event_stream():
         uid = uuid.uuid4()
-        for i in range(30):
-            time.sleep(2)
-            print(uid, i)
+        for i in range(1, 101):
+            time.sleep(0.2)
             yield "id: {}\ndata: {:>2}\n\n".format(uid, i)
 
     return Response(event_stream(), mimetype="text/event-stream")
