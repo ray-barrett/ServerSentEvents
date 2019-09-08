@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stream Test with Table</title>
+
+    <script>
+        function connect_to_stream() {
+            var targetContainer = document.getElementById("progress_bar");
+            var eventSource = new EventSource("/stream")
+            eventSource.onmessage = function handleStream(e) {
+                console.log(e);
+                targetContainer.value = e.data;
+                if (e.data == "100") {
+                    console.log("Received 100, closing connection");
+                    eventSource.close();
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+
+
+    <div id="progress_bar_div">
+        <progress id="progress_bar" value="0" max="100"></progress>
+    </div>
+    <div id="connect_button">
+        <button type="button" onclick="connect_to_stream()">Track Progress</button>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>
